@@ -52,8 +52,6 @@ class EventPriorityQueue:
                 pred = loaded_pipeline.predict(X)[0]
                 event.priority = int(round(pred))
                 print(f"Predicted priority for flexible event '{event.event_name}': {event.priority}")
-            else:
-                print(f"Using provided priority for flexible event '{event.event_name}': {event.priority}")
 
             # Pushing flexible event into priority queue
             heapq.heappush(self._heap, (event.priority, self._counter, event))
@@ -90,9 +88,9 @@ if __name__ == "__main__":
     queue = EventPriorityQueue()
 
     inputs = [
-        {"event_name": "Task A", "deadline": "2025-05-25T12:00:00", "duration": 2},
-        {"event_name": "Meeting B", "start_time": "2025-05-23T09:00:00", "end_time": "2025-05-23T10:00:00"},
-        {"event_name": "Task C", "deadline": "2025-05-26T18:00:00", "duration": 1, "priority": 1},
+        {"event_name": "Task A", "deadline": "2025-05-27T12:00:00", "duration": 2},
+        {"event_name": "Meeting B", "start_time": "2025-05-23T09:00:00", "end_time": "2025-05-28T10:00:00"},
+        {"event_name": "Task C", "deadline": "2025-05-30T18:00:00", "duration": 1, "priority": 1},
     ]
 
     for inp in inputs:
@@ -100,8 +98,8 @@ if __name__ == "__main__":
         queue.add_event(evt)
 
 # Sorted List of Dictionary of Event Information
-    print("\nExported Event Data for ML Model:")
-    print(queue.get_all_events())
+    # print("\nExported Event Data for ML Model:")
+    # print(queue.get_all_events())
 
     # print("\nDequeuing flexible events in priority order:")
     # while len(queue) > 0:
